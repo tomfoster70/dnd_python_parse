@@ -4,3 +4,10 @@ Python script to parse the xml output files into the standard dnd pdf format for
 
 https://play.google.com/store/apps/details?id=com.wgkammerer.testgui.basiccharactersheet.app&hl=en_GB
 
+
+# TODO
+
+
+* Spells
+* Tidy up of code - remove prints
+* Make easy to use for people with no python knowledge
