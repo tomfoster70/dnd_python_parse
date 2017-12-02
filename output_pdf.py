@@ -6,6 +6,94 @@ import os
 import math
 import binascii
 
+mainDict =  { 'CharacterName 2'  :  '', 'Age'  :  '', 'Height'  :  '', 'Weight'  :  '', 'Eyes'  :  '',
+      'Skin'  :  '', 'Hair'  :  '', 'Allies'  :  '', 'FactionName'  :  '', 'Backstory'  :  '', 
+      'Feat+Traits'  :  '', 'Treasure'  :  '', 'ClassLevel'  :  '', 'Background'  :  '', 
+      'PlayerName'  :  '', 'CharacterName'  :  '', 'Race '  :  '', 'Alignment'  :  '', 
+      'XP'  :  '', 'Inspiration'  :  '', 'STR'  :  '', 'ProfBonus'  :  '', 'AC'  :  '', 
+      'Initiative'  :  '', 'Speed'  :  '', 'PersonalityTraits '  :  '', 'STRmod'  :  '', 
+      'HPMax'  :  '', 'ST Strength'  :  '', 'DEX'  :  '', 'HPCurrent'  :  '', 'Ideals'  :  '', 
+      'DEXmod '  :  '', 'HPTemp'  :  '', 'Bonds'  :  '', 'CON'  :  '', 'HDTotal'  :  '', 
+      'Check Box 12'  :  False, 'Check Box 13'  :  False, 'Check Box 14'  :  False, 
+      'CONmod'  :  '', 'Check Box 15'  :  False, 'Check Box 16'  :  False, 
+      'Check Box 17'  :  False, 'HD'  :  '', 'Flaws'  :  '', 'INT'  :  '', 
+      'ST Dexterity'  :  '', 'ST Constitution'  :  '', 'ST Intelligence'  :  '', 
+      'ST Wisdom'  :  '', 'ST Charisma'  :  '', 'Acrobatics'  :  '', 'Animal'  :  '', 
+      'Athletics'  :  '', 'Deception '  :  '', 'History '  :  '', 'Insight'  :  '', 
+      'Intimidation'  :  '', 'Check Box 11'  :  False, 'Check Box 18'  :  False, 
+      'Check Box 19'  :  False, 'Check Box 20'  :  False, 'Check Box 21'  :  False, 
+      'Check Box 22'  :  False, 'Wpn Name'  :  '', 'Wpn1 AtkBonus'  :  '', 'Wpn1 Damage'  :  '', 
+      'INTmod'  :  '', 'Wpn Name 2'  :  '', 'Wpn2 AtkBonus '  :  '', 'Wpn2 Damage '  :  '', 
+      'Investigation '  :  '', 'WIS'  :  '', 'Wpn Name 3'  :  '', 'Wpn3 AtkBonus  '  :  '', 
+      'Arcana'  :  '', 'Wpn3 Damage '  :  '', 'Perception '  :  '', 'WISmod'  :  '', 'CHA'  :  '',
+      'Nature'  :  '', 'Performance'  :  '', 'Medicine'  :  '', 'Religion'  :  '', 'Stealth '  :  '', 
+      'Check Box 23'  :  False, 'Check Box 24'  :  False, 'Check Box 25'  :  False, 
+      'Check Box 26'  :  False, 'Check Box 27'  :  False, 'Check Box 28'  :  False, 
+      'Check Box 29'  :  False, 'Check Box 30'  :  False, 'Check Box 31'  :  False, 
+      'Check Box 32'  :  False, 'Check Box 33'  :  False, 'Check Box 34'  :  False, 
+      'Check Box 35'  :  False, 'Check Box 36'  :  False, 'Check Box 37'  :  False, 
+      'Check Box 38'  :  False, 'Check Box 39'  :  False, 'Check Box 40'  :  False, 
+      'Persuasion'  :  '', 'SleightofHand'  :  '', 'CHamod'  :  '', 'Survival'  :  '', 
+      'AttacksSpellcasting'  :  '', 'Passive'  :  '', 'CP'  :  '', 'ProficienciesLang'  :  '', 
+      'SP'  :  '', 'EP'  :  '', 'GP'  :  '', 'PP'  :  '', 'Equipment'  :  '', 'Features and Traits'  :  '', 
+      'Spellcasting Class 2'  :  '', 'SpellcastingAbility 2'  :  '', 'SpellSaveDC  2'  :  '', 
+      'SpellAtkBonus 2'  :  '', 'SlotsTotal 19'  :  '', 'SlotsRemaining 19'  :  '', 'Spells 1014'  :  '', 
+      'Spells 1015'  :  '', 'Spells 1016'  :  '', 'Spells 1017'  :  '', 'Spells 1018'  :  '', 
+      'Spells 1019'  :  '', 'Spells 1020'  :  '', 'Spells 1021'  :  '', 'Spells 1022'  :  '', 
+      'Check Box 314'  :  False, 'Check Box 3031'  :  False, 'Check Box 3032'  :  False, 
+      'Check Box 3033'  :  False, 'Check Box 3034'  :  False, 'Check Box 3035'  :  False, 
+      'Check Box 3036'  :  False, 'Check Box 3037'  :  False, 'Check Box 3038'  :  False, 
+      'Check Box 3039'  :  False, 'Check Box 3040'  :  False, 'Check Box 321'  :  False, 
+      'Check Box 320'  :  False, 'Check Box 3060'  :  False, 'Check Box 3061'  :  False, 
+      'Check Box 3062'  :  False, 'Check Box 3063'  :  False, 'Check Box 3064'  :  False, 
+      'Check Box 3065'  :  False, 'Check Box 3066'  :  False, 'Check Box 315'  :  False, 
+      'Check Box 3041'  :  False, 'Spells 1023'  :  '', 'Check Box 251'  :  False, 
+      'Check Box 309'  :  False, 'Check Box 3010'  :  False, 'Check Box 3011'  :  False, 
+      'Check Box 3012'  :  False, 'Check Box 3013'  :  False, 'Check Box 3014'  :  False, 
+      'Check Box 3015'  :  False, 'Check Box 3016'  :  False, 'Check Box 3017'  :  False, 
+      'Check Box 3018'  :  False, 'Check Box 3019'  :  False, 'Spells 1024'  :  '', 
+      'Spells 1025'  :  '', 'Spells 1026'  :  '', 'Spells 1027'  :  '', 'Spells 1028'  :  '', 
+      'Spells 1029'  :  '', 'Spells 1030'  :  '', 'Spells 1031'  :  '', 'Spells 1032'  :  '', 
+      'Spells 1033'  :  '', 'SlotsTotal 20'  :  '', 'SlotsRemaining 20'  :  '', 'Spells 1034'  :  '', 
+      'Spells 1035'  :  '', 'Spells 1036'  :  '', 'Spells 1037'  :  '', 'Spells 1038'  :  '', 'Spells 1039'  :  '', 
+      'Spells 1040'  :  '', 'Spells 1041'  :  '', 'Spells 1042'  :  '', 'Spells 1043'  :  '', 'Spells 1044'  :  '', 
+      'Spells 1045'  :  '', 'Spells 1046'  :  '', 'SlotsTotal 21'  :  '', 'SlotsRemaining 21'  :  '', 'Spells 1047'  :  '', 
+      'Spells 1048'  :  '', 'Spells 1049'  :  '', 'Spells 1050'  :  '', 'Spells 1051'  :  '', 'Spells 1052'  :  '', 
+      'Spells 1053'  :  '', 'Spells 1054'  :  '', 'Spells 1055'  :  '', 'Spells 1056'  :  '', 'Spells 1057'  :  '', 
+      'Spells 1058'  :  '', 'Spells 1059'  :  '', 'SlotsTotal 22'  :  '', 'SlotsRemaining 22'  :  '', 
+      'Spells 1060'  :  '', 'Spells 1061'  :  '', 'Spells 1062'  :  '', 'Spells 1063'  :  '', 'Spells 1064'  :  '', 
+      'Check Box 323'  :  False, 'Check Box 322'  :  False, 'Check Box 3067'  :  False, 'Check Box 3068'  :  False, 
+      'Check Box 3069'  :  False, 'Check Box 3070'  :  False, 'Check Box 3071'  :  False, 
+      'Check Box 3072'  :  False, 'Check Box 3073'  :  False, 'Spells 1065'  :  '', 'Spells 1066'  :  '', 
+      'Spells 1067'  :  '', 'Spells 1068'  :  '', 'Spells 1069'  :  '', 'Spells 1070'  :  '', 'Spells 1071'  :  '', 
+      'Check Box 317'  :  False, 'Spells 1072'  :  '', 'SlotsTotal 23'  :  '', 'SlotsRemaining 23'  :  '', 
+      'Spells 1073'  :  '', 'Spells 1074'  :  '', 'Spells 1075'  :  '', 'Spells 1076'  :  '', 'Spells 1077'  :  '', 
+      'Spells 1078'  :  '', 'Spells 1079'  :  '', 'Spells 1080'  :  '', 'Spells 1081'  :  '', 'SlotsTotal 24'  :  '', 
+      'SlotsRemaining 24'  :  '', 'Spells 1082'  :  '', 'Spells 1083'  :  '', 'Spells 1084'  :  '', 'Spells 1085'  :  '', 
+      'Spells 1086'  :  '', 'Spells 1087'  :  '', 'Spells 1088'  :  '', 'Spells 1089'  :  '', 'Spells 1090'  :  '', 
+      'SlotsTotal 25'  :  '', 'SlotsRemaining 25'  :  '', 'Spells 1091'  :  '', 'Spells 1092'  :  '', 
+      'Spells 1093'  :  '', 'Spells 1094'  :  '', 'Spells 1095'  :  '', 'Spells 1096'  :  '', 'Spells 1097'  :  '', 
+      'Spells 1098'  :  '', 'Spells 1099'  :  '', 'SlotsTotal 26'  :  '', 'SlotsRemaining 26'  :  '', 
+      'Spells 10100'  :  '', 'Spells 10101'  :  '', 'Spells 10102'  :  '', 'Spells 10103'  :  '', 
+      'Check Box 316'  :  False, 'Check Box 3042'  :  False, 'Check Box 3043'  :  False, 
+      'Check Box 3044'  :  False, 'Check Box 3045'  :  False, 'Check Box 3046'  :  False, 
+      'Check Box 3047'  :  False, 'Check Box 3048'  :  False, 'Check Box 3049'  :  False, 
+      'Check Box 3050'  :  False, 'Check Box 3051'  :  False, 'Check Box 3052'  :  False, 
+      'Spells 10104'  :  '', 'Check Box 325'  :  False, 'Check Box 324'  :  False, 
+      'Check Box 3074'  :  False, 'Check Box 3075'  :  False, 'Check Box 3076'  :  False, 
+      'Check Box 3077'  :  False, 'Spells 10105'  :  '', 'Spells 10106'  :  '', 'Check Box 3078'  :  False, 
+      'SlotsTotal 27'  :  '', 'SlotsRemaining 27'  :  '', 'Check Box 313'  :  False, 'Check Box 310'  :  False, 
+      'Check Box 3020'  :  False, 'Check Box 3021'  :  False, 'Check Box 3022'  :  False, 
+      'Check Box 3023'  :  False, 'Check Box 3024'  :  False, 'Check Box 3025'  :  False, 
+      'Check Box 3026'  :  False, 'Check Box 3027'  :  False, 'Check Box 3028'  :  False, 
+      'Check Box 3029'  :  False, 'Check Box 3030'  :  False, 'Spells 10107'  :  '', 
+      'Spells 10108'  :  '', 'Spells 10109'  :  '', 'Spells 101010'  :  '', 'Spells 101011'  :  '', 
+      'Spells 101012'  :  '', 'Check Box 319'  :  False, 'Check Box 318'  :  False, 
+      'Check Box 3053'  :  False, 'Check Box 3054'  :  False, 'Check Box 3055'  :  False, 
+      'Check Box 3056'  :  False, 'Check Box 3057'  :  False, 'Check Box 3058'  :  False, 
+      'Check Box 3059'  :  False, 'Check Box 327'  :  False, 'Check Box 326'  :  False, 
+      'Check Box 3079'  :  False, 'Check Box 3080'  :  False, 'Check Box 3081'  :  False, 
+      'Check Box 3082'  :  False, 'Spells 101013'  :  '', 'Check Box 3083' : False}
 
 class AlternativeCharacterSheet:
 
@@ -77,7 +165,7 @@ class AlternativeCharacterSheet:
     CHECK_BOX_3061 = 'Check Box 3061'
     CHECK_BOX_3062 = 'Check Box 3062'
     CHECK_BOX_3063 = 'Check Box 3063'
-    SLOTSTOTAL_19 = 'SlotsTotal 19'
+    L1_SLOTSTOTAL = 'SlotsTotal 19'
     SKIN = 'Skin'
     SPELLS_1047 = 'Spells 1047'
     SPELLS_1092 = 'Spells 1092'
@@ -415,7 +503,7 @@ class CharacterSheet:
     CHECK_BOX_3061 = 'Check Box 3061'
     CHECK_BOX_3062 = 'Check Box 3062'
     CHECK_BOX_3063 = 'Check Box 3063'
-    SLOTSTOTAL_19 = 'SlotsTotal 19'
+    L1_SLOTSTOTAL = 'SlotsTotal 19'
     SKIN = 'Skin'
     SPELLS_1047 = 'Spells 1047'
     SPELLS_1092 = 'Spells 1092'
@@ -682,6 +770,7 @@ class CharacterSheet:
     CHECK_BOX_3071 = 'Check Box 3071'
     SLOTSREMAINING_21 = 'SlotsRemaining 21'
 
+     
 
 def split_xml_fields(text, splitType=u'\u22a0'):
     
@@ -747,21 +836,21 @@ def get_damage_bonus(abilityMod, abilityModifierBool, magicBonus, miscBonus, wea
         
     damageBonus += magicBonus + miscBonus + weaponBonus
 
-    print 'damageBonus ', damageBonus
+    #print 'damageBonus ', damageBonus
     return damageBonus
       
 class Fifth_edition_app_parse:
 
     def __init__(self, outputClass):
-        self.dict = {} #dict(mainDict)
+        self.dict = dict(mainDict)
         
         self.oc = outputClass
         
-        print 'OUTPUT CLASS ', self.oc.CHARACTERNAME
-        #For debugging to show pdf field names
-        for key in self.dict:
-            if self.dict[key] == '':   
-                self.dict[key] = key
+        #print 'OUTPUT CLASS ', self.oc.CHARACTERNAME
+        ##For debugging to show pdf field names
+        ##for key in self.dict:
+        ##    if self.dict[key] == '':   
+        ##        self.dict[key] = key
         
     def parse_hit_dice(self, root):
     
@@ -946,7 +1035,7 @@ class Fifth_edition_app_parse:
      
     def parse_bonus_list(self, list):
     
-        print list
+        #print list
     
         any_any = int(list[0])
         any_one = int(list[3])
@@ -966,7 +1055,13 @@ class Fifth_edition_app_parse:
     
         classDataList = split_xml_fields(root.find('classData').text, splitType=u'\u229f')
         
-        classInfo = classDataList[0]
+        classInfo = split_xml_fields(classDataList[0], splitType=u'\u22a1')
+        #print classInfo
+        archType = ""
+        if classInfo[1] != "":
+            archType = "{" + classInfo[1] + "}"
+        self.classString = classInfo[0] + " " + archType
+        
         #unknown
         attackBonusList = split_xml_fields(classDataList[10])
         damageBonusList = split_xml_fields(classDataList[11])
@@ -999,7 +1094,7 @@ class Fifth_edition_app_parse:
                 classBonus += any[2]
                 classBonus += ranged[2]
         
-        print 'classBonus ', classBonus
+        #print 'classBonus ', classBonus
         return classBonus
         
     def parse_weapons(self, root):
@@ -1021,13 +1116,13 @@ class Fifth_edition_app_parse:
 
         #Split weapons into indidual lists
         #weapons = [weapons[i:i+13] for i in xrange(0, len(weapons), 13)]
-        print weapons        
-        print 'Total weapon count: ', totalWeapons
+        #print weapons        
+        #print 'Total weapon count: ', totalWeapons
         
         weaponOffset = 0
         restWeapons = ''
         for i in xrange(1, int(totalWeapons)+1):
-            print ('Weapon number {}'.format(i))
+            #print ('Weapon number {}'.format(i))
             
             #Get Info
             weaponInfo = weapons[weaponOffset:weaponOffset+10]
@@ -1085,10 +1180,10 @@ class Fifth_edition_app_parse:
             weaponDamageBonus = str(weaponDamageBonus + classBonusDamage)
             weaponDamage = hitDice + weaponDamageBonus + weaponDamageType
             
-            print 'Weapon name: ', weaponAndRange
-            print 'Weapon attack: ', weaponAttackBonus
-            print 'weapon damage bonus: ', weaponDamageBonus
-            print 'Weapon damage: ', weaponDamage
+            #print 'Weapon name: ', weaponAndRange
+            #print 'Weapon attack: ', weaponAttackBonus
+            #print 'weapon damage bonus: ', weaponDamageBonus
+            #print 'Weapon damage: ', weaponDamage
 
             if i == 1:
                 self.dict[self.oc.WPN_NAME] = weaponAndRange
@@ -1107,6 +1202,198 @@ class Fifth_edition_app_parse:
         
         self.dict[self.oc.ATTACKSSPELLCASTING] = restWeapons
         return
+        
+    def parse_spells(self, root):
+    
+        spellList = split_xml_fields(root.find('spellList').text)
+        
+        spellListVerison = split_xml_fields(spellList[0], splitType=u'\u22a1')
+        slotsRemaining = split_xml_fields(spellList[1], splitType=u'\u22a1')
+        unknown2 = split_xml_fields(spellList[2], splitType=u'\u22a1')
+        totalSpellSlots = split_xml_fields(spellList[3], splitType=u'\u22a1')
+        unknown3 = split_xml_fields(spellList[4], splitType=u'\u22a1')
+        unknown4 = split_xml_fields(spellList[5], splitType=u'\u22a1')
+        spellLevel = split_xml_fields(spellList[6], splitType=u'\u22a1')
+        unknown5 = split_xml_fields(spellList[7], splitType=u'\u22a1')
+        spells = split_xml_fields(spellList[8], splitType=u'\u22a1')
+ 
+        self.dict[self.oc.SPELLCASTING_CLASS_2] = "{} [Cast level {}]".format(self.classString,spellLevel[0])
+
+        misc_dc_bonus = root.find('miscSpellDCBonus').text
+        misc_attack_bonus = root.find('miscSpellAttackBonus').text
+        
+        #How do we know its int mod?
+        abilityList = [int(self.dict[self.oc.STRMOD]),
+                     int(self.dict[self.oc.DEXMOD]),
+                     int(self.dict[self.oc.CONMOD]),
+                     int(self.dict[self.oc.INTMOD]),
+                     int(self.dict[self.oc.WISMOD]),
+                     int(self.dict[self.oc.CHAMOD])]
+                     
+        modifier_code = int(root.find('castingStatCode').text)
+        modifier = abilityList[modifier_code]
+        
+        self.dict[self.oc.SPELLSAVEDC__2] = 8 + int(self.dict[self.oc.PROFBONUS]) + modifier + int(misc_dc_bonus)
+        self.dict[self.oc.SPELLATKBONUS_2] = int(self.dict[self.oc.PROFBONUS]) + modifier + int(misc_attack_bonus)
+        self.dict[self.oc.SPELLCASTINGABILITY_2] = modifier
+        
+        #Spell totals
+        self.dict[self.oc.L1_SLOTSTOTAL] = totalSpellSlots[0]
+        self.dict[self.oc.SLOTSTOTAL_20] = totalSpellSlots[1]
+        self.dict[self.oc.SLOTSTOTAL_21] = totalSpellSlots[2]
+        self.dict[self.oc.SLOTSTOTAL_22] = totalSpellSlots[3]
+        self.dict[self.oc.SLOTSTOTAL_23] = totalSpellSlots[4]
+        self.dict[self.oc.SLOTSTOTAL_24] = totalSpellSlots[5]
+        self.dict[self.oc.SLOTSTOTAL_25] = totalSpellSlots[6]
+        self.dict[self.oc.SLOTSTOTAL_26] = totalSpellSlots[7]
+        self.dict[self.oc.SLOTSTOTAL_27] = totalSpellSlots[8]
+        
+        #Slots Remaining
+        #print 'Slots remaining', slotsRemaining
+        self.dict[self.oc.SLOTSREMAINING_19] = "{}/{} remaining".format(slotsRemaining[0],totalSpellSlots[0])
+        self.dict[self.oc.SLOTSREMAINING_20] = "{}/{} remaining".format(slotsRemaining[1],totalSpellSlots[1])
+        self.dict[self.oc.SLOTSREMAINING_21] = "{}/{} remaining".format(slotsRemaining[2],totalSpellSlots[2])
+        self.dict[self.oc.SLOTSREMAINING_22] = "{}/{} remaining".format(slotsRemaining[3],totalSpellSlots[3])
+        self.dict[self.oc.SLOTSREMAINING_23] = "{}/{} remaining".format(slotsRemaining[4],totalSpellSlots[4])
+        self.dict[self.oc.SLOTSREMAINING_24] = "{}/{} remaining".format(slotsRemaining[5],totalSpellSlots[5])
+        self.dict[self.oc.SLOTSREMAINING_25] = "{}/{} remaining".format(slotsRemaining[6],totalSpellSlots[6])
+        self.dict[self.oc.SLOTSREMAINING_26] = "{}/{} remaining".format(slotsRemaining[7],totalSpellSlots[7])        
+        self.dict[self.oc.SLOTSREMAINING_27] = "{}/{} remaining".format(slotsRemaining[8],totalSpellSlots[8])  
+        
+        CANTRIP_SLOTS = [(self.oc.SPELLS_1014,"checkbox"), 
+                        (self.oc.SPELLS_1016, "check"), 
+                        (self.oc.SPELLS_1017, "check"),
+                        (self.oc.SPELLS_1018, "check"), 
+                        (self.oc.SPELLS_1019, "check"), 
+                        (self.oc.SPELLS_1020, "check"),
+                        (self.oc.SPELLS_1021, "check"), 
+                        (self.oc.SPELLS_1022, "check")]
+        LEVEL_1 = [(self.oc.SPELLS_1015, self.oc.CHECK_BOX_251),
+                   (self.oc.SPELLS_1023, self.oc.CHECK_BOX_309),
+                   (self.oc.SPELLS_1024, self.oc.CHECK_BOX_3010),
+                   (self.oc.SPELLS_1025, self.oc.CHECK_BOX_3011),
+                   (self.oc.SPELLS_1026, self.oc.CHECK_BOX_3012),
+                   (self.oc.SPELLS_1027, self.oc.CHECK_BOX_3013),
+                   (self.oc.SPELLS_1028, self.oc.CHECK_BOX_3014),
+                   (self.oc.SPELLS_1029, self.oc.CHECK_BOX_3015),
+                   (self.oc.SPELLS_1030, self.oc.CHECK_BOX_3016),
+                   (self.oc.SPELLS_1031, self.oc.CHECK_BOX_3017),
+                   (self.oc.SPELLS_1032, self.oc.CHECK_BOX_3018),
+                   (self.oc.SPELLS_1033, self.oc.CHECK_BOX_3019),
+                    ]
+        LEVEL_2 = [(self.oc.SPELLS_1046, self.oc.CHECK_BOX_313),
+                   (self.oc.SPELLS_1034, self.oc.CHECK_BOX_310),
+                   (self.oc.SPELLS_1035, self.oc.CHECK_BOX_3020),
+                   (self.oc.SPELLS_1036, self.oc.CHECK_BOX_3021),
+                   (self.oc.SPELLS_1037, self.oc.CHECK_BOX_3022),
+                   (self.oc.SPELLS_1038, self.oc.CHECK_BOX_3023),
+                   (self.oc.SPELLS_1039, self.oc.CHECK_BOX_3024),
+                   (self.oc.SPELLS_1040, self.oc.CHECK_BOX_3025),
+                   (self.oc.SPELLS_1041, self.oc.CHECK_BOX_3026),
+                   (self.oc.SPELLS_1042, self.oc.CHECK_BOX_3027),
+                   (self.oc.SPELLS_1043, self.oc.CHECK_BOX_3028),
+                   (self.oc.SPELLS_1044, self.oc.CHECK_BOX_3029),
+                   (self.oc.SPELLS_1045, self.oc.CHECK_BOX_3030),
+                    ]            
+                    
+        LEVEL_3 = [(self.oc.SPELLS_1048, self.oc.CHECK_BOX_315),
+                   (self.oc.SPELLS_1047, self.oc.CHECK_BOX_314),
+                   (self.oc.SPELLS_1049, self.oc.CHECK_BOX_3031),
+                   (self.oc.SPELLS_1050, self.oc.CHECK_BOX_3032),
+                   (self.oc.SPELLS_1051, self.oc.CHECK_BOX_3033),
+                   (self.oc.SPELLS_1052, self.oc.CHECK_BOX_3034),
+                   (self.oc.SPELLS_1053, self.oc.CHECK_BOX_3035),
+                   (self.oc.SPELLS_1054, self.oc.CHECK_BOX_3036),
+                   (self.oc.SPELLS_1055, self.oc.CHECK_BOX_3037),
+                   (self.oc.SPELLS_1056, self.oc.CHECK_BOX_3038),
+                   (self.oc.SPELLS_1057, self.oc.CHECK_BOX_3039),
+                   (self.oc.SPELLS_1058, self.oc.CHECK_BOX_3040),
+                   (self.oc.SPELLS_1059, self.oc.CHECK_BOX_3041),
+                    ]  
+
+        LEVEL_4 = [(self.oc.SPELLS_1061, self.oc.CHECK_BOX_317),
+                   (self.oc.SPELLS_1060, self.oc.CHECK_BOX_316),
+                   (self.oc.SPELLS_1062, self.oc.CHECK_BOX_3042),
+                   (self.oc.SPELLS_1063, self.oc.CHECK_BOX_3043),
+                   (self.oc.SPELLS_1064, self.oc.CHECK_BOX_3044),
+                   (self.oc.SPELLS_1065, self.oc.CHECK_BOX_3045),
+                   (self.oc.SPELLS_1066, self.oc.CHECK_BOX_3046),
+                   (self.oc.SPELLS_1067, self.oc.CHECK_BOX_3047),
+                   (self.oc.SPELLS_1068, self.oc.CHECK_BOX_3048),
+                   (self.oc.SPELLS_1069, self.oc.CHECK_BOX_3049),
+                   (self.oc.SPELLS_1070, self.oc.CHECK_BOX_3050),
+                   (self.oc.SPELLS_1071, self.oc.CHECK_BOX_3051),
+                   (self.oc.SPELLS_1072, self.oc.CHECK_BOX_3052),
+                    ]                     
+
+        LEVEL_5 = [(self.oc.SPELLS_1074, self.oc.CHECK_BOX_319),
+                   (self.oc.SPELLS_1073, self.oc.CHECK_BOX_318),
+                   (self.oc.SPELLS_1075, self.oc.CHECK_BOX_3053),
+                   (self.oc.SPELLS_1076, self.oc.CHECK_BOX_3054),
+                   (self.oc.SPELLS_1077, self.oc.CHECK_BOX_3055),
+                   (self.oc.SPELLS_1078, self.oc.CHECK_BOX_3056),
+                   (self.oc.SPELLS_1079, self.oc.CHECK_BOX_3057),
+                   (self.oc.SPELLS_1080, self.oc.CHECK_BOX_3058),
+                   (self.oc.SPELLS_1081, self.oc.CHECK_BOX_3059),
+                    ]  
+        LEVEL_6 = [(self.oc.SPELLS_1083, self.oc.CHECK_BOX_321),
+                   (self.oc.SPELLS_1082, self.oc.CHECK_BOX_320),
+                   (self.oc.SPELLS_1084, self.oc.CHECK_BOX_3060),
+                   (self.oc.SPELLS_1085, self.oc.CHECK_BOX_3061),
+                   (self.oc.SPELLS_1086, self.oc.CHECK_BOX_3062),
+                   (self.oc.SPELLS_1087, self.oc.CHECK_BOX_3063),
+                   (self.oc.SPELLS_1088, self.oc.CHECK_BOX_3064),
+                   (self.oc.SPELLS_1089, self.oc.CHECK_BOX_3065),
+                   (self.oc.SPELLS_1090, self.oc.CHECK_BOX_3066),
+                    ]                      
+        LEVEL_7 = [(self.oc.SPELLS_1092, self.oc.CHECK_BOX_323),
+                   (self.oc.SPELLS_1091, self.oc.CHECK_BOX_322),
+                   (self.oc.SPELLS_1093, self.oc.CHECK_BOX_3067),
+                   (self.oc.SPELLS_1094, self.oc.CHECK_BOX_3068),
+                   (self.oc.SPELLS_1095, self.oc.CHECK_BOX_3069),
+                   (self.oc.SPELLS_1096, self.oc.CHECK_BOX_3070),
+                   (self.oc.SPELLS_1097, self.oc.CHECK_BOX_3071),
+                   (self.oc.SPELLS_1098, self.oc.CHECK_BOX_3072),
+                   (self.oc.SPELLS_1099, self.oc.CHECK_BOX_3073),
+                    ] 
+        LEVEL_8 = [(self.oc.SPELLS_10101, self.oc.CHECK_BOX_325),
+                   (self.oc.SPELLS_10100, self.oc.CHECK_BOX_324),
+                   (self.oc.SPELLS_10102, self.oc.CHECK_BOX_3074),
+                   (self.oc.SPELLS_10103, self.oc.CHECK_BOX_3075),
+                   (self.oc.SPELLS_10104, self.oc.CHECK_BOX_3076),
+                   (self.oc.SPELLS_10105, self.oc.CHECK_BOX_3077),
+                   (self.oc.SPELLS_10106, self.oc.CHECK_BOX_3078),
+                    ] 
+        LEVEL_9 = [(self.oc.SPELLS_10108, self.oc.CHECK_BOX_327),
+                   (self.oc.SPELLS_10107, self.oc.CHECK_BOX_326),
+                   (self.oc.SPELLS_10109, self.oc.CHECK_BOX_3079),
+                   (self.oc.SPELLS_101010, self.oc.CHECK_BOX_3080),
+                   (self.oc.SPELLS_101011, self.oc.CHECK_BOX_3081),
+                   (self.oc.SPELLS_101012, self.oc.CHECK_BOX_3082),
+                   (self.oc.SPELLS_101013, self.oc.CHECK_BOX_3083),
+                    ]                     
+ 
+        spell_slots = [CANTRIP_SLOTS, LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5,
+                       LEVEL_6, LEVEL_7, LEVEL_8, LEVEL_9]
+        
+        #print spells
+        for spell in spells[:-1]:
+            spell_list = split_xml_fields(spell, splitType=u'\u229f')
+            level = int(spell_list[0])
+            name = spell_list[1]
+            prepared = spell_list[7]
+
+            try:
+                slot,prep = spell_slots[level].pop(0)
+            except:
+                continue
+            
+            self.dict[slot] = name
+            if "true" == prepared:
+                self.dict[prep] = True
+            
+        
+        return
       
     def parse_5e_app_xml_character(self, fileName):
                 
@@ -1119,14 +1406,34 @@ class Fifth_edition_app_parse:
         self.dict[self.oc.HPCURRENT] = root.find('currentHealth').text
         self.dict[self.oc.HPTEMP] = root.find('currentTempHP').text
         self.dict[self.oc.SPEED] = str(int(root.find('baseSpeed').text) + int(root.find('speedMiscMod').text))
-        self.parse_class_data(root)
-        self.parse_armor_class(root)
-        self.parse_hit_dice(root)
-        self.parse_ability_score(root)
-        self.parse_skills(root)
-        self.parse_note_list(root)
-        self.parse_death_saves(root)
-        self.parse_weapons(root)
+        
+        #Lazy error handling if the xml dosn't contain one of the fields then just
+        #continue and try and do the rest, put into blocks of 2 to save space
+        try:
+            self.parse_class_data(root)
+        except:
+            pass
+        try:
+            self.parse_armor_class(root)
+            self.parse_hit_dice(root)
+        except:
+            pass
+        try:
+            self.parse_ability_score(root)
+            self.parse_skills(root)
+        except:
+            pass
+        try:
+            self.parse_note_list(root)
+            self.parse_death_saves(root)
+        except:
+            pass
+        try:
+            self.parse_weapons(root)
+            self.parse_spells(root)
+        except:
+            pass
+
         
         return self.dict
         
