@@ -1465,7 +1465,7 @@ def main():
     output_classes = [CharacterSheet, AlternativeCharacterSheet]
 
     if not os.path.exists("input"):
-        print "Can't find input folder. Please put character file into a folder called 'input'"
+        print( "Can't find input folder. Please put character file into a folder called 'input'" )
         time.sleep(10)
         sys.exit(1)
 
@@ -1473,7 +1473,7 @@ def main():
         os.mkdir('output')
 
     for xmlfile in os.listdir("input"):
-        print xmlfile
+        print( xmlfile )
         for output_class in output_classes:
 
             app_xml_parser = Fifth_edition_app_parse(output_class)
