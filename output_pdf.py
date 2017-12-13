@@ -1,11 +1,17 @@
-from fdfgen import forge_fdf
 import sys
+import time
+try:
+    from fdfgen import forge_fdf
+except:
+    print("Hello! Thanks for giving me a go but I still need fdfgen.\nPlease see the read me.\nAlso are you using python2? because thats what I used for all the testing")
+    time.sleep(10)
+    sys.exit(1)
+
 import xml.etree.ElementTree as ET
 import re
 import os
 import math
 import binascii
-import time
 
 mainDict =  { 'CharacterName 2'  :  '', 'Age'  :  '', 'Height'  :  '', 'Weight'  :  '', 'Eyes'  :  '',
       'Skin'  :  '', 'Hair'  :  '', 'Allies'  :  '', 'FactionName'  :  '', 'Backstory'  :  '',
@@ -1400,7 +1406,7 @@ class Fifth_edition_app_parse:
 
     def parse_5e_app_xml_character(self, fileName):
 
-        print('Converting {}'.format(fileName))
+        print('Converting {} into {}'.format(fileName, self.oc.output_name))
         tree = ET.parse(fileName)
         root = tree.getroot()
 
@@ -1455,7 +1461,7 @@ def output(dict, input_pdf, fdf_name, output_name):
             fdf_name, #input fdf
             os.path.join('output', output_name) #output
         )
-    print('About to send this command to pdftk: ' + cmd)
+    #print('About to send this command to pdftk: ' + cmd)
     os.system(cmd)
 
     return
@@ -1465,7 +1471,7 @@ def main():
     output_classes = [CharacterSheet, AlternativeCharacterSheet]
 
     if not os.path.exists("input"):
-        print "Can't find input folder. Please put character file into a folder called 'input'"
+        print("Can't find input folder. Please put character file into a folder called 'input'")
         time.sleep(10)
         sys.exit(1)
 
@@ -1473,7 +1479,6 @@ def main():
         os.mkdir('output')
 
     for xmlfile in os.listdir("input"):
-        print xmlfile
         for output_class in output_classes:
 
             app_xml_parser = Fifth_edition_app_parse(output_class)
@@ -1490,4 +1495,13 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    print("Hello. Lets make some pdfs!!")
+    try:
+        main()
+        print("FINISHED!!")
+    except Exception as e:
+        print("Failed to run :( error is here [{}]".format(e))
+
+    time.sleep(10)
+    sys.exit(0)
+
