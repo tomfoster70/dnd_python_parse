@@ -820,9 +820,14 @@ def get_skill_value(abilityModifier, profBonus, skillProf, doubleProf, halfProf,
 
     return str(skillValue), skillProfBool
 
-def get_armor_class(armorBonus, miscArmorBonus, shieldBonus, maxDex):
+def get_armor_class(armorBonus, miscArmorBonus, shieldBonus, maxDex, dexMod):
 
     ac = int(armorBonus) + int(miscArmorBonus) + int(shieldBonus)
+
+    if int(maxDex) >= int(dexMod):
+        ac += int(dexMod)
+    else:
+        ac += int(maxDex)
 
     return str(ac)
 
@@ -953,7 +958,8 @@ class Fifth_edition_app_parse:
         self.dict[self.oc.AC] = get_armor_class(root.find('armorBonus').text, \
                                         root.find('miscArmorBonus').text, \
                                         root.find('shieldBonus').text, \
-                                        root.find('maxDex').text)
+                                        root.find('maxDex').text,
+                                        self.dict[self.oc.DEXMOD])
 
         return
 
@@ -1428,9 +1434,9 @@ class Fifth_edition_app_parse:
         #continue and try and do the rest, put into blocks of 2 to save space
         functions_to_call = [
                         self.parse_class_data,
-                        self.parse_armor_class,
                         self.parse_hit_dice,
                         self.parse_ability_score,
+                        self.parse_armor_class,
                         self.parse_skills,
                         self.parse_note_list,
                         self.parse_death_saves,
