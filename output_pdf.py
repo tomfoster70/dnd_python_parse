@@ -14,6 +14,9 @@ import math
 import binascii
 import traceback
 
+if sys.version_info < (3,):
+    range = xrange
+
 mainDict =  { 'CharacterName 2'  :  '', 'Age'  :  '', 'Height'  :  '', 'Weight'  :  '', 'Eyes'  :  '',
       'Skin'  :  '', 'Hair'  :  '', 'Allies'  :  '', 'FactionName'  :  '', 'Backstory'  :  '',
       'Feat+Traits'  :  '', 'Treasure'  :  '', 'ClassLevel'  :  '', 'Background'  :  '',
@@ -789,7 +792,7 @@ def split_xml_fields(text, splitType=u'\u22a0'):
 
 def get_ability_score_values(mainValue, saveProficency):
 
-    abilityModifier = (int(mainValue)/2)-5
+    abilityModifier = (int(mainValue)//2)-5
     saveThrow       = abilityModifier
     saveThrowProf   = False
 
@@ -1132,13 +1135,13 @@ class Fifth_edition_app_parse:
                                 'Lightning', 'Necrotic', 'Poison', 'Pysychic', 'Radiant', 'Thunder']
 
         #Split weapons into indidual lists
-        #weapons = [weapons[i:i+13] for i in xrange(0, len(weapons), 13)]
+        #weapons = [weapons[i:i+13] for i in range(0, len(weapons), 13)]
         #print weapons
         #print 'Total weapon count: ', totalWeapons
 
         weaponOffset = 0
         restWeapons = ''
-        for i in xrange(1, int(totalWeapons)+1):
+        for i in range(1, int(totalWeapons)+1):
             #print ('Weapon number {}'.format(i))
 
             #Get Info
@@ -1147,7 +1150,7 @@ class Fifth_edition_app_parse:
             #print weaponInfo
 
             name = weaponInfo[0]
-            range = weaponInfo[1]
+            wrange = weaponInfo[1]
             weaponCode = weaponInfo[2]
 
             attackAbilityCode = int(weaponInfo[3])
@@ -1182,11 +1185,11 @@ class Fifth_edition_app_parse:
             weaponOffset += (numHitDice*2)
 
             hitDice = ''
-            for j in xrange(0, numHitDice):
+            for j in range(0, numHitDice):
                 hitDice += hitDiceList[j*2] + 'd' + hitDiceList[j*2+1] + '+'
 
             #Get strings
-            weaponAndRange = ' '.join([name, '(', range, ')'])
+            weaponAndRange = ' '.join([name, '(', wrange, ')'])
             weaponAttackBonus = get_attack_bonus(pBonus, \
                                                 weaponProfBool, \
                                                 attackAbilityList[attackAbilityCode], \
