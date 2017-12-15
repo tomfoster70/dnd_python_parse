@@ -12,6 +12,7 @@ import re
 import os
 import math
 import binascii
+import traceback
 
 mainDict =  { 'CharacterName 2'  :  '', 'Age'  :  '', 'Height'  :  '', 'Weight'  :  '', 'Eyes'  :  '',
       'Skin'  :  '', 'Hair'  :  '', 'Allies'  :  '', 'FactionName'  :  '', 'Backstory'  :  '',
@@ -1121,7 +1122,8 @@ class Fifth_edition_app_parse:
                              int(self.dict[self.oc.WISMOD]),
                              int(self.dict[self.oc.CHAMOD])]
 
-        weaponDamageTypeList = [' Bludgeon', ' Piercing', ' Slashing']
+        weaponDamageTypeList = ['Bludgeon', 'Piercing', 'Slashing', 'Acid', 'Cold', 'Fire', 'Force',
+                                'Lightning', 'Necrotic', 'Poison', 'Pysychic', 'Radiant', 'Thunder']
 
         #Split weapons into indidual lists
         #weapons = [weapons[i:i+13] for i in xrange(0, len(weapons), 13)]
@@ -1136,6 +1138,7 @@ class Fifth_edition_app_parse:
             #Get Info
             weaponInfo = weapons[weaponOffset:weaponOffset+10]
             weaponOffset +=10
+            #print weaponInfo
 
             name = weaponInfo[0]
             range = weaponInfo[1]
@@ -1154,10 +1157,15 @@ class Fifth_edition_app_parse:
             weaponOffset +=1
 
             #parse weaponCode
-            rangeType = weaponCode[0] #1 == melle, 2 == ranged
-            numHands = weaponCode[1] #1 == one handed, 2 == two handed
-            unknown = weaponCode[2]
-            weaponDamageType = weaponDamageTypeList[int(weaponCode[3])]
+            if len(weaponCode) == 4:
+                rangeType = weaponCode[0] #1 == melle, 2 == ranged
+                numHands = weaponCode[1] #1 == one handed, 2 == two handed
+                unknown = weaponCode[2]
+                weaponDamageType = weaponDamageTypeList[int(weaponCode[3])]
+            else:
+                rangeType = 1
+                numHands = 1
+                weaponDamageType = weaponDamageTypeList[int(weaponCode[0])]
 
             #Get class weapon bonus
             classBonusDamage = self.get_class_weapon_bonus(rangeType, numHands, self.weaponDamageAny, self.weaponDamageMelee, self.weaponDamageRanged)
@@ -1187,7 +1195,7 @@ class Fifth_edition_app_parse:
 
             weaponAttackBonus = '+' + str(weaponAttackBonus + classBonusAttack)
             weaponDamageBonus = str(weaponDamageBonus + classBonusDamage)
-            weaponDamage = hitDice + weaponDamageBonus + weaponDamageType
+            weaponDamage = hitDice + weaponDamageBonus + ' ' + weaponDamageType
 
             #print 'Weapon name: ', weaponAndRange
             #print 'Weapon attack: ', weaponAttackBonus
@@ -1418,30 +1426,25 @@ class Fifth_edition_app_parse:
 
         #Lazy error handling if the xml dosn't contain one of the fields then just
         #continue and try and do the rest, put into blocks of 2 to save space
-        try:
-            self.parse_class_data(root)
-        except:
-            pass
-        try:
-            self.parse_armor_class(root)
-            self.parse_hit_dice(root)
-        except:
-            pass
-        try:
-            self.parse_ability_score(root)
-            self.parse_skills(root)
-        except:
-            pass
-        try:
-            self.parse_note_list(root)
-            self.parse_death_saves(root)
-        except:
-            pass
-        try:
-            self.parse_weapons(root)
-            self.parse_spells(root)
-        except:
-            pass
+        functions_to_call = [
+                        self.parse_class_data,
+                        self.parse_armor_class,
+                        self.parse_hit_dice,
+                        self.parse_ability_score,
+                        self.parse_skills,
+                        self.parse_note_list,
+                        self.parse_death_saves,
+                        self.parse_weapons,
+                        self.parse_spells
+                            ]
+
+        for function in functions_to_call:
+            try:
+                function(root)
+            except Exception as e:
+                print("\nERROR: Failed to run {} so not outputting. The error is \n\n{}\n\n".format(function.__name__, e))
+                traceback.print_exc(file=sys.stdout)
+
 
 
         return self.dict
